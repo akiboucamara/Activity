@@ -1,0 +1,10 @@
+body{
+    background: linear-gradient(#DCD5A8, #BBD3CC ,#ECEE68) ;
+}
+
+.espace{
+    display: flex;
+    flex-direction: column;
+          
+}
+

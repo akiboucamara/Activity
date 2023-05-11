@@ -9,8 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use DateTimeImmutable;
+use Doctrine\DBAL\Types\DateTimeImmutableType;
 use Symfony\Component\Validator\Constraints\DateTime;
+
 
 #[Route('/admin/commentaire')]
 class AdminCommentaireController extends AbstractController
@@ -27,7 +28,7 @@ class AdminCommentaireController extends AbstractController
     public function new(Request $request, CommentaireRepository $commentaireRepository): Response
     {
         $commentaire = new Commentaire();
-        $commentaire ->setCreatedAd(new DateTimeImmutable;());
+        $commentaire->setCreatedAd(new DateTimeImmutable());
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
 
@@ -72,7 +73,7 @@ class AdminCommentaireController extends AbstractController
     #[Route('/{id}', name: 'app_admin_commentaire_delete', methods: ['POST'])]
     public function delete(Request $request, Commentaire $commentaire, CommentaireRepository $commentaireRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$commentaire->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $commentaire->getId(), $request->request->get('_token'))) {
             $commentaireRepository->remove($commentaire, true);
         }
 

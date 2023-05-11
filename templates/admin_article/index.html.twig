@@ -15,23 +15,26 @@
             </tr>
         </thead>
         <tbody>
+            <div class="contenaire" >
         {% for article in articles %}
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.titre }}</td>
+                <td><img src="{{ article.image }}" height="100" width="100"alt"..."></td>
                 <td>{{ article.description }}</td>
                 <td>
-                    <a href="{{ path('app_admin_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">edit</a>
+                    <a href="{{ path('app_admin_article_show', {'id': article.id}) }}">Afficher</a>
+                    <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">Modifier</a>
                 </td>
             </tr>
+        </div>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun enregistrement trouvé </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_article_new') }}">Create new</a>
+    <a href="{{ path('app_admin_article_new') }}">Crée un nouveaux</a>
 {% endblock %}
