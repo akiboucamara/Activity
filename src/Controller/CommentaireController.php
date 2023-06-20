@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\User;
 use App\Entity\Commentaire;
 use App\Form\Commentaire1Type;
 use App\Repository\CommentaireRepository;
@@ -15,17 +16,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 
+
 #[Route('/article/{id}/commentaire')]
 class CommentaireController extends AbstractController
 {
-  
+
     #[Route('/new', name: 'app_commentaire_new', methods: ['GET', 'POST'])]
-    public function new(Request $request,Article $article, CommentaireRepository $commentaireRepository): Response
+    public function new(Request $request, Article $article, User $user, CommentaireRepository $commentaireRepository): Response
     {
 
         $commentaire = new Commentaire();
-        $commentaire ->setCreatedAd(new DateTime);
-        $commentaire ->setUser($this->getUser());
+        $created_ad_string = new DateTime();
+        $created_ad_stringValue = $created_ad_string->format('Y-m-d');
+        $commentaire->setCreatedAd($created_ad_stringValue);
+        $commentaire->setUser($user);
         $commentaire->setArticle($article);
         $form = $this->createForm(Commentaire1Type::class, $commentaire);
         $form->handleRequest($request);
@@ -43,5 +47,4 @@ class CommentaireController extends AbstractController
             'form' => $form,
         ]);
     }
-
 }

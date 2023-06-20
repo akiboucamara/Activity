@@ -9,8 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\DBAL\Types\DateTimeImmutableType;
-use Symfony\Component\Validator\Constraints\DateTime;
+use DateTime;
+// use Doctrine\DBAL\Types\DateTimeImmutableType;
+// use Symfony\Component\Validator\Constraints\DateTime;
 
 
 #[Route('/admin/commentaire')]
@@ -28,7 +29,12 @@ class AdminCommentaireController extends AbstractController
     public function new(Request $request, CommentaireRepository $commentaireRepository): Response
     {
         $commentaire = new Commentaire();
-        $commentaire->setCreatedAd(new DateTimeImmutable());
+        $created_ad_string = new DateTime();
+        $created_ad_stringValue = $created_ad_string->format('Y-m-d');
+        // $created_ad = \DateTime::createFromFormat('Y-m-d', $created_ad_stringValue);
+        $commentaire->setCreatedAd($created_ad_stringValue);+
+        001-+
+        
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
 

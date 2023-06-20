@@ -17,6 +17,9 @@ class Commentaire
     #[ORM\Column(type: Types::TEXT)]
     private ?string $contenu = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $createdAd = null;
+
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Article $article = null;
@@ -38,6 +41,18 @@ class Commentaire
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getCreatedAd(): ?string
+    {
+        return $this->createdAd;
+    }
+
+    public function setCreatedAd(string $createdAd): self
+    {
+        $this->createdAd = $createdAd;
 
         return $this;
     }

@@ -7,7 +7,7 @@
 
    <div class="card text-bg-secondary mb-5">
   <img src="{{ article.image }}" class="card-img-top img-responsive" height="auto" max-width="100%" display="block" alt="image">
-  <div class="card-body">
+  <div class="card-body"> 
     <h5 class="card-title">{{ article.titre }}</h5>
     <p class="card-text">{{ article.description }}</p>
   </div>
@@ -18,7 +18,7 @@
     <div>
         {% for commentaire in commentaires %}
 
-        <div>{{commentaire.user.userIdentifier}} a dit :</div>
+        {# <div>{{commentaire.user.userIdentifier}} a dit :</div> #}
         <div>{{commentaire.contenu}}</div>
         
         {% endfor %}
